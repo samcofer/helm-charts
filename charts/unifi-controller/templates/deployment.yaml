@@ -33,16 +33,9 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-          - name: TZ
-            value: {{ .Values.environment.timezone }}
-          - name: PUID
-            value: "{{ .Values.environment.uid }}"
-          - name: PGID
-            value: "{{ .Values.environment.gid }}"
-          - name: MEM_LIMIT
-            value: "{{ .Values.environment.memLimit }}"
-          - name: MEM_STARTUP
-            value: "{{ .Values.environment.memStartup }}"
+            {{- if .Values.environment }}
+            {{- toYaml .Values.environment | nindent 8 }}
+            {{- end }}
           ports:
           - containerPort: 8080
             protocol: TCP
