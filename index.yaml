@@ -12,6 +12,35 @@ entries:
             - linux/arm64
     apiVersion: v2
     appVersion: 8.0.24
+    created: "2025-10-15T01:45:51.955462286Z"
+    description: A Helm Chart for deploying a UniFi controller to Kubernetes
+    digest: 263733547dc148105ea40b8c72c85525dcfd37fc683e15960f2a1af3fb2fbfe6
+    home: https://github.com/Qonstrukt/helm-charts/tree/main/charts/unifi-controller
+    icon: https://assets-global.website-files.com/622b70d8906c7ab0c03f77f8/63b40a92093c6b2f3767e4e6_tMCv8T-y_400x400.png
+    keywords:
+    - unifi
+    - controller
+    - ubiquiti
+    maintainers:
+    - email: stefan@qonstrukt.nl
+      name: Stefan Moonen
+      url: https://qonstrukt.nl
+    name: unifi-controller
+    type: application
+    urls:
+    - https://github.com/samcofer/helm-charts/releases/download/unifi-controller-2.6.2/unifi-controller-2.6.2.tgz
+    version: 2.6.2
+  - annotations:
+      artifacthub.io/changes: |
+        - Add loadBalancerIP Configuration support
+      artifacthub.io/images: |
+        - name: unifi-controller
+          image: linuxserver/unifi-controller:8.0.24
+          platforms:
+            - linux/amd64
+            - linux/arm64
+    apiVersion: v2
+    appVersion: 8.0.24
     created: "2025-10-14T21:43:29.936259055Z"
     description: A Helm Chart for deploying a UniFi controller to Kubernetes
     digest: a2ae6f50dcdb0f5708701827ecb39f85505d2fff54ce1603c3aae9fc4ff47b78
@@ -30,4 +59,4 @@ entries:
     urls:
     - https://github.com/samcofer/helm-charts/releases/download/unifi-controller-2.6.1/unifi-controller-2.6.1.tgz
     version: 2.6.1
-generated: "2025-10-14T21:43:29.936265037Z"
+generated: "2025-10-15T01:45:51.955485018Z"
