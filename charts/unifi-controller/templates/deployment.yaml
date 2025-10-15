@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             {{- if .Values.environment }}
-            {{- toYaml .Values.environment | nindent 8 }}
+            {{- toYaml .Values.environment | nindent 12 }}
             {{- end }}
           ports:
           - containerPort: 8080
