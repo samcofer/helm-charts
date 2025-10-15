@@ -61,7 +61,7 @@ spec:
             protocol: UDP
             name: apdiscovery
           - containerPort: 3478
-            protocol: TCP
+            protocol: UDP
             name: stun
           {{- if .Values.service.appDiscovery }}
           - containerPort: 1900
