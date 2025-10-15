@@ -48,7 +48,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  type: LoadBalancer
+  type: {{ .Values.service.type }}
   ports: 
   - port: 10001
     targetPort: 10001
