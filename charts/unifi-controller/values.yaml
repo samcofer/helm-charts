@@ -14,12 +14,15 @@ serviceAccount:
   annotations: {}
   name: ""
 
+# These keys are rendered verbatim as container env var names, so they must match the
+# names the LinuxServer image actually reads (TZ/PUID/PGID/MEM_LIMIT/MEM_STARTUP). The old
+# camelCase keys (timezone/uid/gid/memLimit/memStartup) were silently ignored by the image.
 environment:
-  - timezone: "Europe/Berlin"
-  - uid: 1000
-  - gid: 1000
-  - memLimit: 1920    # Keep this a little below the resource limits
-  - memStartup: 1024  # Set this rougly to the resource requests
+  - TZ: "Europe/Berlin"
+  - PUID: 1000
+  - PGID: 1000
+  - MEM_LIMIT: 1920    # -Xmx; keep this a little below the resource limits
+  - MEM_STARTUP: 1024  # -Xms; set this roughly to the resource requests
 
 service:
   type: "ClusterIP"
@@ -83,13 +86,38 @@ securityContext: {}
 #  runAsNonRoot: true
 #  runAsUser: 999
 
-resources: 
+resources:
   limits:
     cpu: 500m
     memory: 2Gi
   requests:
     cpu: 250m
     memory: 1Gi
+
+# The UniFi Java app can take 1-2 minutes to bind :8080 on a cold boot (Mongo + config
+# init, more so on network/NFS-backed storage). A startupProbe holds liveness/readiness
+# off until the app is up, so a slow boot is not converted into a liveness kill + crash
+# loop. failureThreshold * periodSeconds is the total warmup budget (default 5 min).
+startupProbe:
+  enabled: true
+  tcpSocket:
+    port: 8080
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  failureThreshold: 30
+  timeoutSeconds: 3
+
+readinessProbe:
+  tcpSocket:
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+livenessProbe:
+  tcpSocket:
+    port: 8080
+  initialDelaySeconds: 15
+  periodSeconds: 20
 
 
 nodeSelector: {}
