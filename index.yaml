@@ -3,6 +3,37 @@ entries:
   unifi-controller:
   - annotations:
       artifacthub.io/changes: |
+        - Add configurable startupProbe (enabled by default) to protect slow UniFi boots from liveness kills
+        - Make livenessProbe and readinessProbe configurable via values
+        - Fix default environment var names (TZ/PUID/PGID/MEM_LIMIT/MEM_STARTUP) that the LinuxServer image actually reads
+      artifacthub.io/images: |
+        - name: unifi-controller
+          image: linuxserver/unifi-controller:8.0.24
+          platforms:
+            - linux/amd64
+            - linux/arm64
+    apiVersion: v2
+    appVersion: 8.0.24
+    created: "2026-08-04T19:11:02.690804856Z"
+    description: A Helm Chart for deploying a UniFi controller to Kubernetes
+    digest: 4b3a1b7a5c6c64ffb63084d4c88485c4f4174f1a4478ed2a77e0e9652c961dff
+    home: https://github.com/Qonstrukt/helm-charts/tree/main/charts/unifi-controller
+    icon: https://assets-global.website-files.com/622b70d8906c7ab0c03f77f8/63b40a92093c6b2f3767e4e6_tMCv8T-y_400x400.png
+    keywords:
+    - unifi
+    - controller
+    - ubiquiti
+    maintainers:
+    - email: stefan@qonstrukt.nl
+      name: Stefan Moonen
+      url: https://qonstrukt.nl
+    name: unifi-controller
+    type: application
+    urls:
+    - https://github.com/samcofer/helm-charts/releases/download/unifi-controller-2.7.0/unifi-controller-2.7.0.tgz
+    version: 2.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - Add loadBalancerIP Configuration support
       artifacthub.io/images: |
         - name: unifi-controller
@@ -175,4 +206,4 @@ entries:
     urls:
     - https://github.com/samcofer/helm-charts/releases/download/unifi-controller-2.6.1/unifi-controller-2.6.1.tgz
     version: 2.6.1
-generated: "2025-10-15T14:00:49.000028054Z"
+generated: "2026-08-04T19:11:02.690828681Z"
