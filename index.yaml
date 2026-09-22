@@ -1,5 +1,36 @@
 apiVersion: v1
 entries:
+  mealie:
+  - annotations:
+      artifacthub.io/changes: |
+        - Fork of npelikan/mealie-helm 0.1.0.
+        - Add Deployment strategy (configurable via updateStrategy, default Recreate). mealie is a
+          single-replica app on a ReadWriteOnce volume; the upstream default RollingUpdate
+          multi-attach-deadlocks the new pod against the old one across nodes on every rollout.
+      artifacthub.io/images: |
+        - name: mealie
+          image: ghcr.io/mealie-recipes/mealie:v3.27.0
+    apiVersion: v2
+    appVersion: v2.7.1
+    created: "2026-09-22T15:34:31.788866327Z"
+    description: A Helm chart for deploying Mealie (self-hosted recipe manager) to
+      Kubernetes
+    digest: 1a1e1328e0f8b9219a1ffd1b6d85f26aa7c63a6e89caae0cf74458418f12bace
+    home: https://github.com/npelikan/mealie-helm
+    keywords:
+    - mealie
+    - recipes
+    maintainers:
+    - name: Sam Cofer
+      url: https://github.com/samcofer
+    name: mealie
+    sources:
+    - https://github.com/npelikan/mealie-helm
+    - https://github.com/mealie-recipes/mealie
+    type: application
+    urls:
+    - https://github.com/samcofer/helm-charts/releases/download/mealie-0.2.0/mealie-0.2.0.tgz
+    version: 0.2.0
   unifi-controller:
   - annotations:
       artifacthub.io/changes: |
@@ -206,4 +237,4 @@ entries:
     urls:
     - https://github.com/samcofer/helm-charts/releases/download/unifi-controller-2.6.1/unifi-controller-2.6.1.tgz
     version: 2.6.1
-generated: "2026-08-04T19:11:02.690828681Z"
+generated: "2026-09-22T15:34:31.788880267Z"
