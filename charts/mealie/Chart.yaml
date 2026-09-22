@@ -1,0 +1,28 @@
+apiVersion: v2
+name: mealie
+description: A Helm chart for deploying Mealie (self-hosted recipe manager) to Kubernetes
+type: application
+# Fork of npelikan/mealie-helm 0.1.0. Kept the chart name "mealie" so <release>.fullname
+# and therefore the Deployment/PVC/Service object names are byte-identical to upstream
+# (preserves the existing bound ReadWriteOnce PVC on adoption).
+version: 0.2.0
+appVersion: v2.7.1
+keywords:
+  - mealie
+  - recipes
+home: https://github.com/npelikan/mealie-helm
+sources:
+  - https://github.com/npelikan/mealie-helm
+  - https://github.com/mealie-recipes/mealie
+maintainers:
+  - name: Sam Cofer
+    url: https://github.com/samcofer
+annotations:
+  artifacthub.io/changes: |
+    - Fork of npelikan/mealie-helm 0.1.0.
+    - Add Deployment strategy (configurable via updateStrategy, default Recreate). mealie is a
+      single-replica app on a ReadWriteOnce volume; the upstream default RollingUpdate
+      multi-attach-deadlocks the new pod against the old one across nodes on every rollout.
+  artifacthub.io/images: |
+    - name: mealie
+      image: ghcr.io/mealie-recipes/mealie:v3.27.0

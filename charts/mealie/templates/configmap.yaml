@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mealie.fullname" . }}
+  labels:
+    {{- include "mealie.labels" . | nindent 4 }}
+data:
+  BASE_URL: {{ .Values.mealie.baseUrl }}
+  TZ: {{ .Values.mealie.tz }}
+  {{- with .Values.mealie.postgres }}
+  {{- if .enabled }}
+  DB_ENGINE: postgres
+  POSTGRES_SERVER: {{ .hostname }}
+  POSTGRES_PORT: "{{ .port }}"
+  POSTGRES_DB: {{ .dbname }}
+  {{- end}}
+  {{- end}}
+  {{- with .Values.mealie.oidc }}
+  {{- if .enabled }}
+  OIDC_AUTH_ENABLED: "True"
+  OIDC_CONFIGURATION_URL: {{ .url }}
+  OIDC_USER_CLAIM: {{ .userClaim }}
+  {{- end }}
+  {{- end }}
+  {{- if .Values.mealie.extraConfigs }}
+  {{- .Values.mealie.extraConfigs | toYaml | nindent 2 }}
+  {{- end }}
+  
