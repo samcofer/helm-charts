@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/cofer-cluster-icon.png" alt="cofer-cluster" width="180">
+</p>
+
 # helm-charts
 
 ![Latest UniFi Controller release](https://img.shields.io/github/v/release/qonstrukt/helm-charts?filter=unifi-controller-*)
